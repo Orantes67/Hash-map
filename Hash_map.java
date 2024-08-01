@@ -9,7 +9,7 @@ public class Hash_map {
 
     public void agregarPalabras(List<String[]> palabras) {
         for (int i = 0; i < palabras.size(); i++) {
-            String palabra = palabras.get(i)[0].toLowerCase(); // Convertir a minúsculas para evitar problemas de comparación
+            String palabra = palabras.get(i)[0].toLowerCase(); 
             int numeroLinea = Integer.parseInt(palabras.get(i)[1]);
             if (!mapa.containsKey(palabra)) {
                 mapa.put(palabra, new ArrayList<>());
@@ -24,7 +24,13 @@ public class Hash_map {
     }
 
     public void eliminarPalabra(String palabra) {
-        mapa.remove(palabra.toLowerCase());
+        String palabraLower = palabra.toLowerCase();
+        if (mapa.containsKey(palabraLower)) {
+            mapa.remove(palabraLower);
+            System.out.println("Palabra eliminada con éxito: " + palabraLower);
+        } else {
+            System.out.println("La palabra '" + palabraLower + "' no se encontró en el mapa.");
+        }
     }
 
     public List<Integer> obtenerLineas(String palabra) {

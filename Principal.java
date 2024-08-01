@@ -1,5 +1,4 @@
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Principal {
 
@@ -19,8 +18,19 @@ public class Principal {
             System.out.println("3: Eliminar Palabra");
             System.out.println("4: Salir");
 
-            int opc = leer.nextInt();
-            leer.nextLine(); 
+            int opc = -1;
+            boolean inputValido = false;
+
+            while (!inputValido) {
+                try {
+                    opc = leer.nextInt();
+                    leer.nextLine(); // Limpiar el buffer de entrada
+                    inputValido = true;
+                } catch (InputMismatchException e) {
+                    System.out.println("Entrada no válida. Por favor, ingresa un número.");
+                    leer.nextLine(); // Limpiar el buffer de entrada para permitir un nuevo intento
+                }
+            }
 
             switch (opc) {
                 case 1:
@@ -59,4 +69,3 @@ public class Principal {
         }
     }
 }
-
