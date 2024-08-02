@@ -13,7 +13,7 @@ public class Archivo {
                 String[] palabras = linea.split(",\\s*"); 
                 
                 for (String palabra : palabras) {
-                    palabra = palabra.trim(); 
+                    palabra = palabra.trim().toLowerCase(); // Convertimos la palabra a minúsculas
                     if (!palabra.isEmpty()) {
                         palabrasConLineas.add(new String[]{palabra, String.valueOf(numeroLinea)});
                         numeroLinea++;

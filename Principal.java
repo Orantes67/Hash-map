@@ -8,7 +8,7 @@ public class Principal {
 
     public static void menu() {
         Scanner leer = new Scanner(System.in);
-        Hash_map hashMap = new Hash_map();
+        Hash_set hashSet = new Hash_set();
         Archivo archivo = new Archivo();
 
         while (true) {
@@ -24,30 +24,30 @@ public class Principal {
             while (!inputValido) {
                 try {
                     opc = leer.nextInt();
-                    leer.nextLine(); // Limpiar el buffer de entrada
+                    leer.nextLine(); 
                     inputValido = true;
                 } catch (InputMismatchException e) {
                     System.out.println("Entrada no válida. Por favor, ingresa un número.");
-                    leer.nextLine(); // Limpiar el buffer de entrada para permitir un nuevo intento
+                    leer.nextLine();
                 }
             }
 
             switch (opc) {
                 case 1:
                     System.out.println("Ingrese la dirección del archivo txt:");
-                    String direccion = leer.nextLine().trim(); // Eliminar espacios en blanco innecesarios
+                    String direccion = leer.nextLine().trim(); 
                     System.out.println("Intentando leer el archivo en la ruta: " + direccion);
                     List<String[]> palabras = archivo.leerTxt(direccion);
                     if (!palabras.isEmpty()) {
-                        hashMap.agregarPalabras(palabras);
+                        hashSet.agregarPalabras(palabras);
                         System.out.println("Palabras agregadas con éxito.");
                     }
                     break;
                 case 2:
                     System.out.println("Ingrese la palabra a buscar:");
                     String palabraBuscar = leer.nextLine();
-                    if (hashMap.buscarPalabra(palabraBuscar)) {
-                        System.out.println("La palabra se encuentra en las líneas: " + hashMap.obtenerLineas(palabraBuscar));
+                    if (hashSet.buscarPalabra(palabraBuscar)) {
+                        System.out.println("La palabra se encuentra en el conjunto.");
                     } else {
                         System.out.println("La palabra no se encontró.");
                     }
@@ -55,11 +55,9 @@ public class Principal {
                 case 3:
                     System.out.println("Ingrese la palabra a eliminar:");
                     String palabraEliminar = leer.nextLine();
-                    hashMap.eliminarPalabra(palabraEliminar);
-                    System.out.println("Palabra eliminada con éxito.");
+                    hashSet.eliminarPalabra(palabraEliminar);
                     break;
                 case 4:
-                    System.out.println("Saliendo...");
                     leer.close();
                     return;
                 default:
